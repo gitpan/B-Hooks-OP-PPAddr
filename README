@@ -30,21 +30,24 @@ DESCRIPTION
             $pkg->get_makefile_vars,
         );
 
-    Your XS module can now include "hook_op_check.h".
+    Your XS module can now include "hook_op_ppaddr.h".
 
 TYPES
   typedef OP *(*hook_op_ppaddr_cb_t) (pTHX_ OP *, void *user_data)
     Type that callbacks need to implement.
 
 FUNCTIONS
-void hook_op_ppaddr (OP *op, hook_op_ppaddr_cb_t cb, void *user_data)
+  void hook_op_ppaddr (OP *op, hook_op_ppaddr_cb_t cb, void *user_data)
     Replace the function to execute "op" with the callback "cb". "user_data"
     will be passed to the callback as the last argument.
 
-void hook_op_ppaddr_around (OP *op, hook_op_ppaddr_cb_t before, hook_op_ppaddr_cb_t after, void *user_data)
+  void hook_op_ppaddr_around (OP *op, hook_op_ppaddr_cb_t before, hook_op_ppaddr_cb_t after, void *user_data)
     Register the callbacks "before" and "after" to be called before and
     after the execution of "op". "user_data" will be passed to the callback
     as the last argument.
+
+SEE ALSO
+    B::Hooks::OP::Check
 
 AUTHOR
     Florian Ragwitz <rafl@debian.org>
